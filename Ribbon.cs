@@ -25,6 +25,7 @@ namespace Test18
                     getItemLabel='GetComboBoxItemLabel'
                     getText='GetComboBoxText'
                     onChange='OnComboBoxTextChanged' />
+          <button id='MyButton' label='Add Item' size='large' onAction='OnAddItemClicked' />
         </group>
       </tab>
     </tabs>
@@ -48,9 +49,14 @@ namespace Test18
         private void ComboBoxWrapper_TextChanged(object sender, string newText)
         {
             // Handle text changed event
-            System.Windows.Forms.MessageBox.Show($"ComboBox text changed to: {newText}");
+            MessageBox.Show($"ComboBox text changed to: {newText}");
         }
 
+        // Implement OnAddItemClicked callback
+        public void OnAddItemClicked(IRibbonControl control)
+        {
+            _comboBoxWrapper.AddItem($"Item {MyComboBox.GetItemCount(control) + 1}");
+        }
 
         #region Combobox wrapper
         public RibbonComboBoxWrapper _comboBoxWrapper;
